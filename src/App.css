@@ -1,12 +1,43 @@
 
 * {
-  font-size: 1.05em;
+  font-size: 1.0em;
 }
 
 
 .n-card {
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
-  margin-bottom: 10px; /* Added */
-  margin-top: 40px;
+	margin: 0 auto; /* Added */
+	float: none; /* Added */
+	margin-bottom: 10px; /* Added */
+	margin-top: 40px;
+}
+
+.n-toast.n-show {
+	display: block;
+    opacity: 1;
+}
+
+
+.n-toast {
+	font-size: .875rem;
+	background-color: rgba(255,255,255,.85);
+	background-clip: padding-box;
+	border: 1px solid rgba(0,0,0,.1);
+	box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.1);
+	opacity: 0;
+	border-radius: .25rem;
+}
+
+
+.n-toast:not(:last-child) {
+	margin-bottom: .75rem;
+}
+
+
+.n-fade {
+  	transition: opacity .15s linear;
+}
+
+
+.n-pl-29 {
+	padding-left: 12px !important;
 }

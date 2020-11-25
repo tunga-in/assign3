@@ -21,6 +21,7 @@ export const uiConfig = {
     signInSuccessUrl: '/',
     signInOptions: [
         firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ]
 };

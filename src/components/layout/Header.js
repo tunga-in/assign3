@@ -17,7 +17,6 @@ function Header(){
             </Nav>
             <Nav>
                 <Nav.Link className='text-white' href="/">Home</Nav.Link>
-                <Nav.Link className='text-white' href="/notes">Notes</Nav.Link>
                 {
                     isLoggedin && 
                     <>

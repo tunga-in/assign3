@@ -1,9 +1,23 @@
+import { getCurrUser } from "./user";
 
 
-export async function addNote(){}
+export async function addNote(note){
+    let currNotes = localStorage.getItem('@notes');
+    currNotes = currNotes? JSON.parse(currNotes): [];
+    const user = await getCurrUser();
+    const newNotes = [
+        {
+            ...note,
+            user: user
+
+        },
+        ...currNotes
+    ];
+    localStorage.setItem('@notes', JSON.stringify(newNotes));
+}
 
 
-export async function getNotes(mine=false){
+export async function getNotes(){
     const storeNotes = localStorage.getItem('@notes');
     let notes = storeNotes? JSON.parse(storeNotes): [];
 
@@ -17,4 +31,17 @@ export async function deleteNote(noteId){
     const filteredNotes = notes.filter(note => note.id !== noteId);
     localStorage.setItem('@notes', JSON.stringify(filteredNotes));
     return filteredNotes;
+}
+
+
+export async function getPublicNotes(){
+    const notes = await getNotes();
+    return notes.filter(note => note.visibility === 'Public');
+}
+
+
+export async function getMyNotes(){
+    const notes = await getNotes();
+    const user = await getCurrUser();
+    return notes.filter(note => note.user.id === user.id);
 }

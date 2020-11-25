@@ -1,6 +1,7 @@
 
 import React, { createContext, useEffect, useState } from 'react';
 import firebase from '../config/firebaseConfig';
+import { getCurrUser, saveUser } from '../data/user';
 
 
 export const AuthContext = createContext();
@@ -12,10 +13,28 @@ export function AuthContextProvider({children}){
 
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged((user) => {
-            setIsLoggedin(!!user);
-            setUser('firebase user', user);
-        });
+        async function init(){
+            let currUser = await getCurrUser();
+
+            firebase.auth().onAuthStateChanged((user) => {
+                user && saveUser(
+                    {
+                        id: user.uid,
+                        displayName: user.displayName,
+                        email: user.email,
+                        phone: user.phoneNumber,
+                    }
+                );
+
+                setUser(user);
+                
+            });
+
+            setIsLoggedin(!!currUser);
+            setUser(user);
+        }
+
+        init();
 
     }, [user]);
 

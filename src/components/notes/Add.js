@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button, Form, Jumbotron } from 'react-bootstrap';
 import { v4 } from 'uuid';
 import { APP_NAME } from '../../util/config/constants';
+import { addNote } from '../../util/data/notes';
 
 
 function AddNote(){
@@ -14,20 +15,14 @@ function AddNote(){
 
     function add(event){
         event.preventDefault();
-        let currNotes = localStorage.getItem('@notes');
-        currNotes = currNotes? JSON.parse(currNotes): [];
-
-        const newNotes = [
-            {
-                id: v4(), 
-                title: title, 
-                subject: subject, 
-                visibility: visibility, 
-                timestamp: new Date().toLocaleTimeString(),
-            },
-            ...currNotes
-        ];
-        localStorage.setItem('@notes', JSON.stringify(newNotes));
+        const date = new Date();
+        addNote({
+            id: v4(), 
+            title: title, 
+            subject: subject, 
+            visibility: visibility, 
+            timestamp: `${date.toDateString()} ${date.toLocaleTimeString()}`
+        })
         window.location = '/my_notes';
     }
 

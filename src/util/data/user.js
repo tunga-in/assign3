@@ -4,7 +4,7 @@ export async function saveUser(user){
 }
 
 
-export async function getCurrUser(){
+export function getCurrUser(){
     let user = localStorage.getItem('@user');
     return user? JSON.parse(user): null;
 }

@@ -3,27 +3,31 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from './components/layout/Home';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import Login from './components/auth/Login';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import Login from './components/account/Login';
 import { AuthContextProvider } from './util/context/AuthContext';
 import AddNote from './components/notes/Add';
 import MyNotes from './components/notes/MyNotes';
-import ProtectedRoute from './components/auth/ProtectedRoute';
+import Profile from './components/account/Profile';
+import ThemeContextProvider from './util/context/ThemeContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 
 function App() {
 	return (
 		<BrowserRouter>
 			<AuthContextProvider>
-				<Header/>
+				<ThemeContextProvider>
+					<Header/>
 					<Switch>
 						<Route exact path='/' component={Home}/>
 						<Route path='/login' component={Login}/>
-						<ProtectedRoute path='/add_note' component={AddNote}/>
-						<ProtectedRoute path='/my_notes' component={MyNotes}/>
+						<Route path='/add_note' component={AddNote}/>
+						<Route path='/my_notes' component={MyNotes}/>
+						<Route path='/profile' component={Profile}/>
 					</Switch>
-				<Footer/>
+					<Footer/>
+				</ThemeContextProvider>
 			</AuthContextProvider>
 		</BrowserRouter>
 	);

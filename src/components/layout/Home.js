@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import { getPublicNotes } from '../../util/data/notes';
 import NotesList from '../notes/NotesList';
+import Container from './Container';
 
 
 function Home(){
@@ -19,10 +20,9 @@ function Home(){
 
 
     return (
-        <div className='container'>
-            <div style={{height:40}}></div>
+        <Container>
             <NotesList notes={notes} publicVisibility={true}/>
-        </div>
+        </Container>
     );
 }
 

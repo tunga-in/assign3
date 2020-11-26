@@ -41,3 +41,12 @@
 .n-pl-29 {
 	padding-left: 12px !important;
 }
+
+.n-upper {
+	text-transform: uppercase;
+}
+
+
+.n-height {
+	min-height: 100vh;
+}

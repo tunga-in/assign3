@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { deleteNote, getMyNotes } from '../../util/data/notes';
+import Container from '../layout/Container';
 import NotesList from './NotesList';
 
 
@@ -24,12 +25,11 @@ function MyNotes(){
     }
 
     return (
-        <div className='container'>
-            <div style={{height:40}}></div>
+        <Container>
             <div className='row'>
                 <NotesList notes={notes} publicVisibility={false} _deleteNote={_deleteNote}/>
             </div>
-        </div>
+        </Container>
     );
 }
 

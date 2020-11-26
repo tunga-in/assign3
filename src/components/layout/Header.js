@@ -6,7 +6,7 @@ import { AuthContext } from '../../util/context/AuthContext';
 
 
 function Header(){
-    const { isLoggedin } = useContext(AuthContext);
+    const { isLoggedin, logout } = useContext(AuthContext);
 
     return (
         <Navbar bg='dark' expand='lg'>
@@ -18,14 +18,16 @@ function Header(){
             <Nav>
                 <Nav.Link className='text-white' href="/">Home</Nav.Link>
                 {
-                    isLoggedin && 
+                    isLoggedin? 
                     <>
                         <Nav.Link className='text-white' href="/add_note">Add Note</Nav.Link>
                         <Nav.Link className='text-white' href="/my_notes">My Notes</Nav.Link>
                         <Nav.Link className='text-white' href="/profile">Profile</Nav.Link>
-                    </>
+                        <Link className='btn btn-outline-success' onClick={() => logout()} >Logout</Link>
+                    </>:
+
+                    <Link className='btn btn-outline-success' to='/login' >Login</Link>
                 }
-                <Link className='btn btn-outline-success' to='/login' >Login</Link>
             </Nav>
 
             </Navbar.Collapse>

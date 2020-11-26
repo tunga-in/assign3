@@ -9,6 +9,7 @@ import './App.css';
 import { AuthContextProvider } from './util/context/AuthContext';
 import AddNote from './components/notes/Add';
 import MyNotes from './components/notes/MyNotes';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 
 function App() {
@@ -19,8 +20,8 @@ function App() {
 					<Switch>
 						<Route exact path='/' component={Home}/>
 						<Route path='/login' component={Login}/>
-						<Route path='/add_note' component={AddNote}/>
-						<Route path='/my_notes' component={MyNotes}/>
+						<ProtectedRoute path='/add_note' component={AddNote}/>
+						<ProtectedRoute path='/my_notes' component={MyNotes}/>
 					</Switch>
 				<Footer/>
 			</AuthContextProvider>

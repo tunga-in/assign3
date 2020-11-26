@@ -1,7 +1,7 @@
 
 import React, { createContext, useEffect, useState } from 'react';
 import firebase from '../config/firebaseConfig';
-import { getCurrUser, saveUser } from '../data/user';
+import { getCurrUser, removeUser, saveUser } from '../data/user';
 
 
 export const AuthContext = createContext();
@@ -13,8 +13,8 @@ export function AuthContextProvider({children}){
 
 
     useEffect(() => {
-        async function init(){
-            let currUser = await getCurrUser();
+        function init(){
+            let currUser = getCurrUser();
 
             firebase.auth().onAuthStateChanged((user) => {
                 user && saveUser(
@@ -40,8 +40,8 @@ export function AuthContextProvider({children}){
 
 
     function logout(){
-        const status = firebase.auth().signOut();
-        console.log('logout status', status);
+        firebase.auth().signOut();
+        removeUser();
     }
 
 

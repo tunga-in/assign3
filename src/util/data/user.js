@@ -8,3 +8,8 @@ export async function getCurrUser(){
     let user = localStorage.getItem('@user');
     return user? JSON.parse(user): null;
 }
+
+
+export function removeUser(){
+    localStorage.removeItem('@user');
+}

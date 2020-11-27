@@ -42,6 +42,7 @@ export function AuthContextProvider({children}){
     function logout(){
         firebase.auth().signOut();
         removeUser();
+        setIsLoggedin(false);
     }
 
 

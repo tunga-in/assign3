@@ -65,7 +65,7 @@ export async function getMyNotes(){
 export async function getNote(id){
     const notes = await getNotes();
     let note = {};
-    notes.map(n => {
+    notes.forEach(n => {
         if(n.id === id){
             note = n;
         }

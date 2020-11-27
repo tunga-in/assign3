@@ -1,6 +1,6 @@
 
 import React, { useState, useContext } from 'react';
-import { Button, Form, Jumbotron } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import { v4 } from 'uuid';
 import { APP_NAME } from '../../util/config/constants';
 import { ThemeContext } from '../../util/context/ThemeContext';

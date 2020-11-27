@@ -54,9 +54,6 @@ function Profile(){
                     <View style={{paddingRight: 20}}><label htmlFor='switch' className='mr-20'>Light Theme</label></View>
                     <View><Switch id='switch' value={lightTheme} onValueChange={val => setLightTheme(val)}/></View>
                 </View>
-                <View style={{flexDirection:'row'}}>
-                    <Link to='/edit_profile'>Edit Profile</Link>
-                </View>
             </Jumbotron>
         </Container>
     );

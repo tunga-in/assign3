@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ThemedNote from '../layout/ThemedNote';
+import ThemedNote from './ThemedNote';
 
 
 

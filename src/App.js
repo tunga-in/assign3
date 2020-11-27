@@ -9,6 +9,7 @@ import AddNote from './components/notes/Add';
 import MyNotes from './components/notes/MyNotes';
 import Profile from './components/account/Profile';
 import ThemeContextProvider from './util/context/ThemeContext';
+import Edit from './components/notes/Edit';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
 						<Route exact path='/' component={Home}/>
 						<Route path='/login' component={Login}/>
 						<Route path='/add_note' component={AddNote}/>
+						<Route path='/note/:id/edit' component={Edit}/>
 						<Route path='/my_notes' component={MyNotes}/>
 						<Route path='/profile' component={Profile}/>
 					</Switch>

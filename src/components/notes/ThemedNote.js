@@ -27,7 +27,7 @@ function ThemedNote({note, publicVisibility, _deleteNote}){
                 publicVisibility? null:
 
                 <div className='form-group n-pl-29'>
-                    <button className='btn btn-success btn-sm'>Edit</button>
+                    <a className='btn btn-success btn-sm' href={ `/note/${note.id}/edit` } >Edit</a>
                     <span className='n-pl-29'></span>
                     <button className='btn btn-danger btn-sm' onClick={() => _deleteNote(note.id)}>Delete</button>
                 </div>

@@ -17,6 +17,21 @@ export async function addNote(note){
 }
 
 
+export async function editNote(note){
+    const notes = await getNotes();
+    const newNotes = notes.map(n => {
+        if(n.id === note.id){
+            return { ...n, ...note};
+
+        } else {
+            return n;
+        }
+    })
+
+    localStorage.setItem('@notes', JSON.stringify(newNotes));
+}
+
+
 export async function getNotes(){
     const storeNotes = localStorage.getItem('@notes');
     let notes = storeNotes? JSON.parse(storeNotes): [];
@@ -44,4 +59,17 @@ export async function getMyNotes(){
     const notes = await getNotes();
     const user = await getCurrUser();
     return notes.filter(note => note.user.id === user.id);
+}
+
+
+export async function getNote(id){
+    const notes = await getNotes();
+    let note = {};
+    notes.map(n => {
+        if(n.id === id){
+            note = n;
+        }
+    });
+
+    return note;
 }

@@ -23,7 +23,7 @@ function Header(){
                         <Nav.Link className='text-white' href="/add_note">Add Note</Nav.Link>
                         <Nav.Link className='text-white' href="/my_notes">My Notes</Nav.Link>
                         <Nav.Link className='text-white' href="/profile">Profile</Nav.Link>
-                        <Link className='btn btn-outline-success' onClick={() => logout()} >Logout</Link>
+                        <Link to='#' className='btn btn-outline-success' onClick={() => logout()} >Logout</Link>
                     </>:
 
                     <Link className='btn btn-outline-success' to='/login' >Login</Link>

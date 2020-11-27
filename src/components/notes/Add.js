@@ -36,7 +36,6 @@ function AddNote(){
                 <h4>Add New Note</h4>
 
                 <Form onSubmit={add} >
-
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Title</Form.Label>
                         <Form.Control type="text" placeholder="Enter title" onChange={e => setTitle(e.target.value)} style={theme.input} required/>

@@ -6,6 +6,7 @@ import { APP_NAME } from '../../util/config/constants';
 import { ThemeContext } from '../../util/context/ThemeContext';
 import { addNote } from '../../util/data/notes';
 import Container from '../layout/Container';
+import NoteForm from './NoteForm';
 
 
 function AddNote(){
@@ -35,28 +36,15 @@ function AddNote(){
             <Jumbotron style={theme.note}>
                 <h4>Add New Note</h4>
 
-                <Form onSubmit={add} >
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" placeholder="Enter title" onChange={e => setTitle(e.target.value)} style={theme.input} required/>
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Subject</Form.Label>
-                        <Form.Control as="textarea" style={theme.input} rows={5} onChange={e => setSubject(e.target.value)} required/>
-                    </Form.Group>
-
-                    <div className='form-group'>
-                        <label htmlFor='visibility'>Visibility</label>
-                        <select id='visibility' className='form-control' style={theme.input} onChange={e => setVisibility(e.target.value)}>
-                            <option value='Private'>Private</option>
-                            <option value='Public'>Public</option>
-                        </select>
-                    </div>
-                    <Button variant="success" type="submit">
-                        Submit
-                    </Button>
-                </Form>
+                <NoteForm
+                    title={ title }
+                    setTitle={ setTitle }
+                    subject={ subject }
+                    setSubject={ setSubject }
+                    visibility={ visibility }
+                    setVisibility={ setVisibility }
+                    submit={ add }
+                />
             </Jumbotron>
         </Container>
     );

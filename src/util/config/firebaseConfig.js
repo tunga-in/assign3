@@ -26,5 +26,6 @@ export const uiConfig = {
     ]
 };
 
+export const firebase_db = firebase.firestore();
 
 export default firebase;

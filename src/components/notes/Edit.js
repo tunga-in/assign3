@@ -28,7 +28,6 @@ function Edit(props){
 
     }, [id])
 
-    console.log('here');
 
 
     const submit = (event) => {

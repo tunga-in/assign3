@@ -7,11 +7,17 @@ import NotesList from './NotesList';
 
 function MyNotes(){
     const [notes, setNotes] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         function init(){
             getMyNotes()
             .then(data => {
                 setNotes(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.log(err);
+                setLoading(false);
             })
         }
 
@@ -24,7 +30,15 @@ function MyNotes(){
         .then(notes => setNotes(notes));
     }
 
-    return (
+    if(loading){
+        return (
+            <Container>
+                <div className='row'>
+                    Loading.....
+                </div>
+            </Container>
+        );
+    } else return (
         <Container>
             <div className='row'>
                 <NotesList notes={notes} publicVisibility={false} _deleteNote={_deleteNote}/>

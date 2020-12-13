@@ -7,11 +7,16 @@ import Container from './Container';
 
 function Home(){
     const [notes, setNotes] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         function init(){
             getPublicNotes()
             .then(data => {
                 setNotes(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setLoading(false);
             })
         }
 
@@ -19,11 +24,22 @@ function Home(){
     }, []);
 
 
-    return (
-        <Container>
-            <NotesList notes={notes} publicVisibility={true}/>
-        </Container>
-    );
+    if(loading){
+        return (
+            <Container>
+                <div className='row'>
+                    Loading.....
+                </div>
+            </Container>
+        );
+        
+    } else {
+        return (
+            <Container>
+                <NotesList notes={notes} publicVisibility={true}/>
+            </Container>
+        );
+    }
 }
 
 

@@ -1,51 +1,32 @@
+import { firebase_db } from "../config/firebaseConfig";
 import { getCurrUser } from "./user";
 
 
 export async function addNote(note){
-    let currNotes = localStorage.getItem('@notes');
-    currNotes = currNotes? JSON.parse(currNotes): [];
     const user = await getCurrUser();
-    const newNotes = [
-        {
-            ...note,
-            user: user
-
-        },
-        ...currNotes
-    ];
-    localStorage.setItem('@notes', JSON.stringify(newNotes));
+    const notesRef = firebase_db.collection('notes').doc(note.id);
+    await notesRef.set({...note, user: user});
 }
 
 
 export async function editNote(note){
-    const notes = await getNotes();
-    const newNotes = notes.map(n => {
-        if(n.id === note.id){
-            return { ...n, ...note};
+    const notesRef = firebase_db.collection('notes').doc(note.id);
+    // Update this note
+    await notesRef.update(note);
 
-        } else {
-            return n;
-        }
-    })
-
-    localStorage.setItem('@notes', JSON.stringify(newNotes));
 }
 
 
 export async function getNotes(){
-    const storeNotes = localStorage.getItem('@notes');
-    let notes = storeNotes? JSON.parse(storeNotes): [];
-
+    const snapshot = await firebase_db.collection("notes").get();
+    let notes = snapshot.docs.map(doc => doc.data());
     return notes;
 }
 
 
 export async function deleteNote(noteId){
-    const storeNotes = localStorage.getItem('@notes');
-    let notes = storeNotes? JSON.parse(storeNotes): [];
-    const filteredNotes = notes.filter(note => note.id !== noteId);
-    localStorage.setItem('@notes', JSON.stringify(filteredNotes));
-    return filteredNotes;
+    await firebase_db.collection('notes').doc(noteId).delete();
+    return await getMyNotes();
 }
 
 
@@ -63,13 +44,6 @@ export async function getMyNotes(){
 
 
 export async function getNote(id){
-    const notes = await getNotes();
-    let note = {};
-    notes.forEach(n => {
-        if(n.id === id){
-            note = n;
-        }
-    });
-
-    return note;
+    const note = await firebase_db.collection('notes').doc(id).get();
+    return note.data();
 }
